@@ -12,11 +12,12 @@ const fsProblem1 = (absolutePathOfRandomDirectory, randomNumberOfFiles) => {
     const accessFolder = (createDir, createFile, deleteFile) => {
       fs.access(absolutePathOfRandomDirectory, (err) => {
         if (err) {
-          createDir();
+          console.log("Creating new Directory..")
+          createDir(createFile, deleteFile);
         } else {
           console.log("Directory already exist...");
+          createFile(deleteFile);
         }
-        createFile(deleteFile);
       });
     };
   
@@ -28,7 +29,7 @@ const fsProblem1 = (absolutePathOfRandomDirectory, randomNumberOfFiles) => {
           JSON.stringify(data),
           (err) => {
             if (err) {
-              console.log(err);
+              console.log("Error for Creating File : ", err);
               return;
             }
             console.log(`File created successfully ${filePath}`);
@@ -41,20 +42,21 @@ const fsProblem1 = (absolutePathOfRandomDirectory, randomNumberOfFiles) => {
     const deleteFile = (filePath) => {
       fs.unlink(filePath, (err) => {
         if (err) {
-          console.log(err);
+          console.log("Error for  Deleting File",err);
           return;
         }
         console.log(`file deleted successfully ${filePath}`);
       });
     };
   
-    const createDir = () => {
+    const createDir = (createFile, deleteFile) => {
       fs.mkdir(absolutePathOfRandomDirectory, (err) => {
         if (err) {
-          console.log(err);
+          console.log("Error for Creating Directory ",err);
           return;
         }
         console.log("Directory Created...");
+        createFile(deleteFile);
       });
     };
   

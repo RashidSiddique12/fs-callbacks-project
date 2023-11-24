@@ -12,7 +12,7 @@ const {fsProblem1} = require('../fs-problem1.cjs')
 
 const absolutePathOfRandomDirectory = "./myFolder";
 const randomNumberOfFiles = Math.round(Math.random() * 10) + 1;
-console.log(randomNumberOfFiles);
+// console.log(randomNumberOfFiles);
 
 fsProblem1(absolutePathOfRandomDirectory, randomNumberOfFiles);
 
